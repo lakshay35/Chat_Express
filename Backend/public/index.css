@@ -1,0 +1,56 @@
+body{
+  background: #28C9FF;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+button {
+  width: 150px;
+  height: 60px;
+  margin: 10px;
+  background: #ffffff;
+  color: #28C9FF;
+  border: none;
+  position: relative;
+  font-size: 1.2em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+}
+
+button:hover {
+  background: #fff;
+  color: #1AAB8A;
+}
+
+button:before, button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #1AAB8A;
+  transition: 400ms ease all;
+}
+
+button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+button:hover:before, button:hover:after {
+  width: 100%;
+  transition: 700ms ease all;
+}
+
+.pagetitle {
+  color: #ffffff
+}

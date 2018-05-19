@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Express Chat</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='./index.css'/ type='text/html'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.dev.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class='center pagetitle'>
+      <h1 id='title'>Welcome to Chat Express</h1>
+    </div>
+
+    <div class='center'>
+      <button>Create a Chat Room</button>
+      <button>Join a Chat Room</button>
+    </div>
+
+    <div id='chat'>
+      <div id='chat-window'>
+        <div id='output'></div>
+        <div id='feedback'></div>
+      </div>
+      <input id='handle' type='text' placeholder='Handle'/>
+      <input id='message' type='text' placeholder='Message'/>
+      <button id='send'>Send</button>
+    </div>
+    <script src='chat.js'></script>
+  </body>
+</html>
