@@ -15,7 +15,8 @@ let init = (server) => {
 
 /* Configure actions with server*/
 io.on('connection', (client) => {
-
+  client.broadcast.emit('joined', 'A user has joined');
+  
   client.on('chat', function(data) {
     io.sockets.emit('chat', data);
   });
@@ -24,6 +25,7 @@ io.on('connection', (client) => {
     client.broadcast.emit('typing', data);
   });
 });
+
 
 
 
