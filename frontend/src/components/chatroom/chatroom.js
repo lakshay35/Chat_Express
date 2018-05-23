@@ -7,19 +7,17 @@ class Chatroom extends Component {
 
   constructor() {
       super();
+
+      // Initializing state
       this.state = {
         socket: io('http://localhost:3000'),
         msglist: [],
         index: 0
       }
-      // Binding this keyword to the compnent functions due to ES6
-      this.sendPressed = this.sendPressed.bind(this);
-      this.messageKeyPressed = this.messageKeyPressed.bind(this);
-      this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   /* When user clicks the send button */
-  sendPressed() {
+  sendPressed = () => {
     this.state.socket.emit('chat', {
       message: document.getElementById('message').value,
       handle: document.getElementById('handle').value
@@ -27,7 +25,7 @@ class Chatroom extends Component {
   }
 
   /* When users start typing this function informs server that the user is typing */
-  messageKeyPressed() {
+  messageKeyPressed = () => {
     this.state.socket.emit('typing', document.getElementById('handle').value,);
   }
 
