@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import './chatroom.css';
 import io from 'socket.io-client';
-
+import Post from './post'
 
 class Chatroom extends Component {
 
   constructor() {
       super();
       this.state = {
-        socket: io('http://localhost:3000')
+        socket: io('http://localhost:3000'),
+        msglist: [],
+        index: 0
       }
-
       // Binding this keyword to the compnent functions due to ES6
       this.sendPressed = this.sendPressed.bind(this);
       this.messageKeyPressed = this.messageKeyPressed.bind(this);
@@ -19,7 +20,6 @@ class Chatroom extends Component {
 
   /* When user clicks the send button */
   sendPressed() {
-    console.log('pressed send');
     this.state.socket.emit('chat', {
       message: document.getElementById('message').value,
       handle: document.getElementById('handle').value
@@ -29,7 +29,6 @@ class Chatroom extends Component {
   /* When users start typing this function informs server that the user is typing */
   messageKeyPressed() {
     this.state.socket.emit('typing', document.getElementById('handle').value,);
-    console.log(document.getElementById('handle').value);
   }
 
   componentDidMount() {
@@ -48,26 +47,22 @@ class Chatroom extends Component {
 
     // User has received a chat message
     this.state.socket.on('chat', data => {
+
       document.getElementById('feedback').innerHTML = '';
-      var div = document.createElement('div');
-      var node = document.createElement('p');
-      var strong = document.createElement('strong');
-      var handle = document.createTextNode(data.handle + ': ');
-      strong.appendChild(handle);
-      node.appendChild(strong);
-      var message = document.createTextNode(data.message);
-      node.appendChild(message)
-      node.classList.add('post');
-      div.appendChild(node);
       var date = new Date();
-      var label = document.createElement('label');
-      var d = document.createTextNode(`${date.getHours()}:${date.getMinutes()}`);
-      label.appendChild(d);
-      label.classList.add('postlabel');
-      div.appendChild(node);
-      div.appendChild(label);
-      div.classList.add('fullpost');
-      document.getElementById('output').appendChild(div);
+      var msg = {
+        name: data.handle,
+        message: data.message,
+        time: date.getHours() + ':' + date.getMinutes(),
+        key: this.state.index
+      };
+      var newlist = this.state.msglist;
+      newlist.push(msg);
+      this.setState({
+        msglist: newlist,
+        index: this.state.index + 1
+      });
+
     });
 
     // Notification from server that a user is typing
@@ -82,6 +77,7 @@ class Chatroom extends Component {
         <div id='main'>
           <div id='chat-window'>
             <div id='output'>
+              <Post key="1" messages={this.state.msglist} />
               <div id='feedback'>
               </div>
             </div>
