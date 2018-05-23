@@ -17,11 +17,11 @@ class Post extends Component {
       return (
         this.state.messages.map(message => {
           return (
-            <div key={message.key} class="fullpost">
-              <p class="post">
+            <div key={message.key} className="fullpost">
+              <p className="post">
               <strong>{message.name}: </strong>{message.message}
               </p>
-              <label class="postlabel">{message.time}</label>
+              <label className="postlabel">{message.time}</label>
             </div>
           )
         })
