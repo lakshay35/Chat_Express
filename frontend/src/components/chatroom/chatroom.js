@@ -10,7 +10,7 @@ class Chatroom extends Component {
 
       // Initializing state
       this.state = {
-        socket: io('http://localhost:3000'),
+        socket: io(),
         msglist: [],
         index: 0
       }
@@ -48,13 +48,15 @@ class Chatroom extends Component {
 
       document.getElementById('feedback').innerHTML = '';
       var date = new Date();
+
       var msg = {
         name: data.handle,
         message: data.message,
         time: date.getHours() + ':' + date.getMinutes(),
         key: this.state.index
       };
-      var newlist = this.state.msglist;
+
+      let newlist = this.state.msglist;
       newlist.push(msg);
       this.setState({
         msglist: newlist,
@@ -75,7 +77,7 @@ class Chatroom extends Component {
         <div id='main'>
           <div id='chat-window'>
             <div id='output'>
-              <Post key="1" messages={this.state.msglist} />
+              <Post key="0" messages={this.state.msglist} />
               <div id='feedback'>
               </div>
             </div>
