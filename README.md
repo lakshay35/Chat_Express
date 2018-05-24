@@ -5,6 +5,7 @@
 
 <p>To try out this project clone this repository and run the "nodemon" command. Then open localhost:3000 in your broswer to use the application</p>
 
+<p>The CSS button animation was a work of Vincent Durand that can be found at http://www.designskilz.com/cool-css-buttons/</p>
 <p>The MIT License is in effect</p>
 
 <code>By Lakshay Sharma</code>
